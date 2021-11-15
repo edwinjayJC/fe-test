@@ -7,7 +7,7 @@ const ExchangeItem = (props) => {
   var indicator = props.isWalletToSend ? "-" : "+";
   return (
     <Card containerStyle={{ padding: 10 }}>
-    <View style={StyleSheet.exchangeItem}>
+      <View style={StyleSheet.exchangeItem}>
         <SelectDropdown
           data={props.walletSelection}
           defaultValue={props.wallet.name}
@@ -41,10 +41,10 @@ const ExchangeItem = (props) => {
             value={`${props.amount}`}
           ></Input>
         </View>
-        {(props.hasError) && props.isWalletToSend ? (
+        {props.hasError && props.isWalletToSend ? (
           <Badge value="EXCEEDS BALANCE" status="error" />
         ) : null}
-    </View>
+      </View>
     </Card>
   );
 };

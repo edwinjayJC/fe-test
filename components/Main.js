@@ -295,7 +295,7 @@ const Main = (props) => {
       </View>
     </RootSiblingParent>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
