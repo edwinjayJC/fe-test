@@ -14,9 +14,9 @@ import ExchangeItem from "./ExchangeItem";
 import Wallet from "../models/wallet";
 
 const Main = (props) => {
-  var USDWallet = new Wallet("USD", "$", 200);
-  var EURWallet = new Wallet("EUR", "€", 150);
-  var GBPWallet = new Wallet("GBP", "£", 10);
+  let USDWallet = new Wallet("USD", "$", 200);
+  let EURWallet = new Wallet("EUR", "€", 150);
+  let GBPWallet = new Wallet("GBP", "£", 10);
   const [wallets, setNewWallets] = useState([USDWallet, EURWallet, GBPWallet]);
   const [isLoading, setIsLoading] = useState(true);
   const [transactionState, setNewtransactionState] = useState({
@@ -96,25 +96,25 @@ const Main = (props) => {
     setConversionRate();
   };
 
-  var currencyRates = {
+  let currencyRates = {
     USD: transactionState.rates !== null ? transactionState.rates["USD"] : 1,
     EUR: transactionState.rates !== null ? transactionState.rates["EUR"] : 1,
     GBP: transactionState.rates !== null ? transactionState.rates["GBP"] : 1,
   };
 
   const convertCurrency = (currentCurrency, desiredCurrency, amount) => {
-    var currentRate = currencyRates[currentCurrency];
-    var desiredRate = currencyRates[desiredCurrency];
+    let currentRate = currencyRates[currentCurrency];
+    let desiredRate = currencyRates[desiredCurrency];
 
-    var USDAmount = amount * currentRate;
-    var convertedAmount = USDAmount / desiredRate;
+    let USDAmount = amount * currentRate;
+    let convertedAmount = USDAmount / desiredRate;
 
     return convertedAmount.toFixed(2);
   };
 
   const formatEnteredAmount = (enteredAmount) => {
     formattedAmount = enteredAmount.replace(/[^0-9.]/g, "");
-    var i = formattedAmount.indexOf(".");
+    let i = formattedAmount.indexOf(".");
     if (i !== -1 && formattedAmount.substr(i + 1).length > 2) {
       formattedAmount = formattedAmount.substring(
         0,
@@ -128,8 +128,8 @@ const Main = (props) => {
   };
 
   const setSendAmountHandler = (enteredAmount) => {
-    var formattedAmount = formatEnteredAmount(enteredAmount);
-    var receivedAmount = convertCurrency(
+    let formattedAmount = formatEnteredAmount(enteredAmount);
+    let receivedAmount = convertCurrency(
       transactionState.sendWallet.name,
       transactionState.receiveWallet.name,
       formattedAmount
@@ -147,8 +147,8 @@ const Main = (props) => {
   };
 
   const setReceiveAmountHandler = (enteredAmount) => {
-    var formattedAmount = formatEnteredAmount(enteredAmount);
-    var sendAmount = convertCurrency(
+    let formattedAmount = formatEnteredAmount(enteredAmount);
+    let sendAmount = convertCurrency(
       transactionState.receiveWallet.name,
       transactionState.sendWallet.name,
       formattedAmount
@@ -165,7 +165,7 @@ const Main = (props) => {
   };
 
   const setConversionRate = () => {
-    var conversionRate = convertCurrency(
+    let conversionRate = convertCurrency(
       transactionState.sendWallet.name,
       transactionState.receiveWallet.name,
       1
@@ -189,7 +189,7 @@ const Main = (props) => {
           duration: Toast.durations.LONG,
         });
       } else {
-        var currentWallets = wallets;
+        let currentWallets = wallets;
         currentWallets = updateWalletBalance(
           transactionState.sendWallet,
           true,
@@ -222,8 +222,8 @@ const Main = (props) => {
     walletArray,
     amount
   ) => {
-    var foundWallet = walletArray.find((wallet) => wallet === walletForUpdate);
-    var indexOfWallet = walletArray.findIndex(
+    let foundWallet = walletArray.find((wallet) => wallet === walletForUpdate);
+    let indexOfWallet = walletArray.findIndex(
       (wallet) => wallet === foundWallet
     );
     if (isSendWallet) {
@@ -235,7 +235,7 @@ const Main = (props) => {
     return walletArray;
   };
 
-  var chipConversionText =
+  let chipConversionText =
     transactionState.sendWallet.symbol +
     "1=" +
     transactionState.receiveWallet.symbol +
