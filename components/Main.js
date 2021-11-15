@@ -177,6 +177,12 @@ const Main = (props) => {
   };
 
   const exchangeFunds = () => {
+    setNewtransactionState((transactionState) => {
+      return {
+        ...transactionState,
+        hasError: !transactionState.sendWallet.validateAmount(formattedAmount),
+      };
+    });
     if (!transactionState.hasError) {
       if (transactionState.receiveWallet === transactionState.sendWallet) {
         let _ = Toast.show("Currencies must be different", {
