@@ -177,7 +177,7 @@ export default function App() {
   };
 
   const exchangeFunds = () => {
-    if (transactionState.hasError) {
+    if (!transactionState.hasError) {
       if (transactionState.receiveWallet === transactionState.sendWallet) {
         let _ = Toast.show("Currencies must be different", {
           duration: Toast.durations.LONG,
@@ -221,9 +221,9 @@ export default function App() {
       (wallet) => wallet === foundWallet
     );
     if (isSendWallet) {
-      foundWallet.decreaseBalance(amount.toFixed(2));
+      foundWallet.decreaseBalance(amount);
     } else {
-      foundWallet.increaseBalance(amount.toFixed(2));
+      foundWallet.increaseBalance(amount);
     }
     walletArray[indexOfWallet] = foundWallet;
     return walletArray;
